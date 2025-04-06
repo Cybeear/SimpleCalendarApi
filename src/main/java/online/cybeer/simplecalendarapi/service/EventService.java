@@ -8,11 +8,11 @@ import online.cybeer.simplecalendarapi.dto.event.EventResponse;
 
 /**
  * @author Vladyslav Tkachenko
- * @since 2025/04/05
+ * @since 2025/04/07
  */
 public interface EventService {
     EventResponse createEvent(String idempotencyKey, EventRequest request);
-    EventResponse createNewEvent(EventRequest request);
+    EventResponse createNewEvent(String idempotencyKey, EventRequest request);
     EventResponse updateEvent(UUID id, EventRequest request);
     EventResponse getEventById(UUID id);
     List<EventResponse> getAllEvents();

@@ -1,0 +1,6 @@
+{
+  "title": "Incorrect JSON",
+  "description": ",
+  "startTimestamp": "not a number",
+  "endTimestamp": 1712355600
+}

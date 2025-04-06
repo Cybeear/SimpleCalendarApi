@@ -1,35 +1,32 @@
 package online.cybeer.simplecalendarapi.dto.event;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import org.hibernate.validator.constraints.UUID;
+import online.cybeer.simplecalendarapi.validation.EventDatesValidator;
+import online.cybeer.simplecalendarapi.validation.XSSValidator;
 
 /**
  * @author Vladyslav Tkachenko
- * @since 2025/04/05
+ * @since 2025/04/07
  */
 @Data
+@EventDatesValidator
 public class EventRequest {
-    
-    @UUID
-    @NotBlank
-    private String id;
 
-    @Size(max = 255)
+    @NotBlank
+    @XSSValidator
     private String title;
 
-    @Size(max = 255)
+    @XSSValidator
     private String description;
-    
-    @NotBlank
-    private String startTime;
-    @NotBlank
-    private String endTime;
 
-    @Size(max = 255)
+    @NotNull
+    private Long startTimestamp;
+
+    @NotNull
+    private Long endTimestamp;
+
+    @XSSValidator
     private String location;
-    
-    @UUID
-    private String userId;
 }

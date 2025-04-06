@@ -1,0 +1,7 @@
+{
+  "title": "<script>alert('xss')</script>",
+  "description": "XSS injection",
+  "startTimestamp": 1712345600,
+  "endTimestamp": 1712355600,
+  "location": "Kyiv"
+}

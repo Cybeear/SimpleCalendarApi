@@ -1,43 +1,39 @@
 package online.cybeer.simplecalendarapi.converter.event;
 
-import java.util.UUID;
+import java.time.Instant;
 import online.cybeer.simplecalendarapi.dto.event.EventRequest;
 import online.cybeer.simplecalendarapi.dto.event.EventResponse;
-import online.cybeer.simplecalendarapi.model.EventEntity;
+import online.cybeer.simplecalendarapi.model.Event;
 import org.springframework.stereotype.Component;
 
 /**
  * @author Vladyslav Tkachenko
- * @since 2025/04/05
+ * @since 2025/04/07
  */
 @Component
 public class EventConverter {
 
-    public EventEntity toEntity(EventRequest request, UUID userId) {
-        return toEntity(null, request);
+    public Event toEntity(EventRequest request) {
+        return toEntity(new Event(), request);
     }
-    
-    public EventEntity toEntity(UUID id, EventRequest request) {
-        EventEntity event = new EventEntity();
-        event.setId(id);
+
+    public Event toEntity(Event event, EventRequest request) {
         event.setTitle(request.getTitle());
         event.setDescription(request.getDescription());
-        event.setStartTime(Long.valueOf(request.getStartTime()));
-        event.setEndTime(Long.valueOf(request.getEndTime()));
+        event.setStartTime(Instant.ofEpochMilli(request.getStartTimestamp()));
+        event.setEndTime(Instant.ofEpochMilli(request.getEndTimestamp()));
         event.setLocation(request.getLocation());
-        if (request.getUserId() != null) {
-            event.setUserId(UUID.fromString(request.getUserId()));
-        }
+
         return event;
     }
 
-    public EventResponse toResponse(EventEntity event) {
+    public EventResponse toResponse(Event event) {
         return new EventResponse(
                 event.getId().toString(),
                 event.getTitle(),
                 event.getDescription(),
-                event.getStartTime().toString(),
-                event.getEndTime().toString(),
+                event.getStartTime().toEpochMilli(),
+                event.getEndTime().toEpochMilli(),
                 event.getLocation()
         );
     }

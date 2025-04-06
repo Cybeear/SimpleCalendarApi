@@ -1,15 +1,13 @@
 package online.cybeer.simplecalendarapi.repository;
 
 import java.util.Optional;
-import java.util.UUID;
-import online.cybeer.simplecalendarapi.dto.IdempotencyKey;
-import online.cybeer.simplecalendarapi.model.EventEntity;
+import online.cybeer.simplecalendarapi.model.IdempotencyKey;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * @author Vladyslav Tkachenko
- * @since 2025/04/05
+ * @since 2025/04/07
  */
 public interface IdempotencyKeyRepository extends JpaRepository<IdempotencyKey, Long> {
-    Optional<IdempotencyKey> findByKey(String key);
+    Optional<IdempotencyKey> findByIdempotencyToken(String key);
 }

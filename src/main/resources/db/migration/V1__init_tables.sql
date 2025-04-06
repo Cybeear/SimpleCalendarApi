@@ -1,14 +1,16 @@
-CREATE TABLE events (
-    id UUID PRIMARY KEY,
-    title TEXT NOT NULL,
+CREATE TABLE events
+(
+    id          CHAR(36) PRIMARY KEY,
+    title       TEXT      NOT NULL,
     description TEXT,
-    start_time TIMESTAMP NOT NULL,
-    end_time TIMESTAMP NOT NULL,
-    location TEXT
+    start_time  TIMESTAMP NOT NULL,
+    end_time    TIMESTAMP NOT NULL,
+    location    TEXT
 );
 
-CREATE TABLE idempotency_key (
-    id INTEGER PRIMARY KEY,
-    key VARCHAR(255) UNIQUE,
-    entityId UUID NOT NULL 
+CREATE TABLE idempotency_key
+(
+    id                INT AUTO_INCREMENT PRIMARY KEY,
+    idempotency_token VARCHAR(255) UNIQUE NOT NULL,
+    entity_id         CHAR(36)            NOT NULL
 );
